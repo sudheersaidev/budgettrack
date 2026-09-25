@@ -1,0 +1,111 @@
+<div class="container-fluid py-4 bg-light min-vh-100">
+  <div class="row g-4">
+    
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <div class="status-indicator me-2"></div>
+            <h6 class="mb-0 fw-bold text-secondary">USER LOGIN TIMELINE</h6>
+          </div>
+          <button class="btn btn-sm btn-outline-primary" (click)="fetchLogins()">
+            <i class="bi bi-arrow-repeat"></i> Refresh Stream
+          </button>
+        </div>
+
+        <div class="card-body p-0 log-container" style="height: 600px; overflow-y: auto;">
+          <ng-container *ngIf="loginLogs && loginLogs.length > 0; else noData">
+            <div *ngFor="let log of loginLogs" 
+                 (click)="showUserDetails(log)"
+                 class="log-row d-flex align-items-center p-3 border-bottom clickable"
+                 [ngClass]="{'bg-selected': selectedUser?.userID === log.userID}">
+              
+              <div class="time-column me-4">
+                <span class="badge bg-light text-primary border fw-bold font-monospace">
+                  {{ log.loginTime | date:'HH:mm:ss' }}
+                </span>
+                <div class="small text-muted mt-1 text-center" style="font-size: 10px;">
+                  {{ log.loginTime | date:'MMM d' }}
+                </div>
+              </div>
+
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-center">
+                  <span class="fw-bold text-dark me-2">{{ log.name }}</span>
+                  <span class="badge p-1 px-2 me-2" 
+                        [ngClass]="{
+                          'bg-danger-subtle text-danger': log.role === 'Admin',
+                          'bg-warning-subtle text-dark': log.role === 'Manager',
+                          'bg-info-subtle text-info': log.role === 'Employee'
+                        }">
+                    {{ log.role }}
+                  </span>
+                </div>
+                <div class="small text-muted">Successful login via Web Client</div>
+              </div>
+
+              <div class="status-box text-end">
+                <span [class]="log.status === 'Active' ? 'text-success' : 'text-danger'" class="fw-bold small">
+                  ● {{ log.status }}
+                </span>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-template #noData>
+            <div class="text-center py-5 text-muted">
+              <p>No recent login activity detected.</p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-bottom py-3">
+          <h6 class="mb-0 fw-bold text-primary">USER_METADATA_INSPECTOR</h6>
+        </div>
+        <div class="card-body">
+          <div *ngIf="!selectedUser" class="text-center py-5 opacity-50">
+            <p>Select a user log to view clear data</p>
+          </div>
+
+          <div *ngIf="selectedUser" class="fade-in">
+            <div class="mb-4">
+              <label class="text-uppercase text-muted small fw-bold d-block mb-1">Employee ID</label>
+              <div class="h5 fw-bold text-primary">{{ selectedUser.userID }}</div>
+            </div>
+
+            <div class="mb-4">
+              <label class="text-uppercase text-muted small fw-bold d-block mb-1">Full Name</label>
+              <div class="text-dark">{{ selectedUser.name }}</div>
+            </div>
+
+            <div class="mb-4">
+              <label class="text-uppercase text-muted small fw-bold d-block mb-1">Registered Email</label>
+              <div class="text-dark">{{ selectedUser.email }}</div>
+            </div>
+
+            <div class="mb-4">
+              <label class="text-uppercase text-muted small fw-bold d-block mb-1">Department</label>
+              <div><span class="badge bg-dark">{{ selectedUser.department }}</span></div>
+            </div>
+
+            <div class="mb-4">
+              <label class="text-uppercase text-muted small fw-bold d-block mb-1">Last System Access</label>
+              <div class="text-muted small">{{ selectedUser.loginTime | date:'medium' }}</div>
+            </div>
+
+            <hr>
+
+            <button class="btn btn-sm btn-light w-100 border" (click)="selectedUser = null">
+              Close Detail View
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

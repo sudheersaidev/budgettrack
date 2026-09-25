@@ -1,0 +1,78 @@
+<div class="card border-0 shadow-sm h-100" style="border-radius: 20px;">
+  <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <h6 class="fw-bold text-dark mb-0" style="letter-spacing: -0.5px;">Department Analysis</h6>
+        <small class="text-muted" style="font-size: 0.75rem;">Budget distribution by project & manager</small>
+      </div>
+      <div class="bg-primary-subtle p-2 rounded-3">
+        <i class="bi bi-pie-chart-fill text-primary fs-5"></i>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body px-4">
+    <div class="row align-items-center">
+      <div class="col-md-5 mb-4 mb-md-0">
+        <div class="chart-container d-flex align-items-center justify-content-center" style="position: relative; height:200px; width:100%">
+          <canvas id="budgetDoughnutChart"></canvas>
+          <div class="position-absolute text-center">
+            <div class="text-muted extra-small fw-bold text-uppercase" style="font-size: 0.6rem;">Total</div>
+            <div class="fw-bold text-dark" style="font-size: 0.9rem;">₹{{ totalDeptBudget | number:'1.0-0' }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-7">
+        <h6 class="small fw-bold text-uppercase text-muted mb-3" style="font-size: 0.7rem; letter-spacing: 1px;">
+          Top Projects Allocation
+        </h6>
+        
+        <div class="project-list-wrapper" style="max-height: 220px; overflow-y: auto;">
+          <div *ngFor="let budget of budgets.slice(0, 5); let i = index" 
+               class="allocation-item d-flex justify-content-between align-items-center p-2 mb-2 rounded-3 hover-bg-light transition-all">
+            
+            <div class="d-flex align-items-center overflow-hidden">
+              <div class="rounded-circle me-3 flex-shrink-0" 
+                   [style.background-color]="getStaticColor(i)" 
+                   style="width: 10px; height: 10px; box-shadow: 0 0 0 3px rgba(0,0,0,0.05);">
+              </div>
+              
+              <div class="d-flex flex-column overflow-hidden">
+                <span class="allocation-title fw-bold text-dark text-truncate" style="font-size: 0.85rem;">
+                  {{ budget.title }}
+                </span>
+                <span class="text-muted text-truncate" style="font-size: 0.7rem;">
+                  <i class="bi bi-person me-1"></i>Manager: <b>{{ budget.createdByManager || 'N/A' }}</b>
+                </span>
+              </div>
+            </div>
+
+            <div class="ms-2 text-end">
+              <span class="badge rounded-pill bg-light text-dark border fw-bold" *ngIf="totalDeptBudget > 0" style="font-size: 0.7rem;">
+                {{ (budget.amountAllocated / totalDeptBudget * 100) | number:'1.0-0' }}%
+              </span>
+              <div class="text-muted" style="font-size: 0.65rem;">₹{{ budget.amountAllocated | number:'1.0-0' }}</div>
+            </div>
+          </div>
+
+          <div *ngIf="budgets.length === 0" class="text-center py-4">
+            <small class="text-muted italic">No data available to display</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer bg-white border-0 pb-4 px-4 pt-0">
+    <button 
+      class="btn btn-primary w-100 rounded-pill fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center" 
+      (click)="confirmDownload()">
+      <i class="bi bi-file-earmark-pdf-fill me-2"></i>
+      Generate Full PDF Report
+    </button>
+    <div class="text-center mt-2">
+      <small class="text-muted" style="font-size: 0.65rem;">Includes manager names and full audit trail</small>
+    </div>
+  </div>
+</div>

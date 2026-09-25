@@ -1,0 +1,60 @@
+<div class="dept-overview-container">
+  <div class="card border-0 shadow-sm bg-primary text-white mb-4">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h6 class="text-uppercase fw-bold opacity-75 mb-1">{{ managerDept }} Department Summary</h6>
+          <h2 class="mb-0">₹{{ totalAllocated | number }}</h2>
+          <small>Total Allocated across {{ departmentBudgets.length }} budgets</small>
+        </div>
+        <i class="bi bi-graph-up-arrow fs-1 opacity-25"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-white py-3">
+      <h6 class="mb-0 fw-bold text-dark">
+        <i class="bi bi-layers me-2 text-primary"></i>Active Budgets
+      </h6>
+    </div>
+    <div class="table-responsive">
+      <table class="table align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th class="ps-4">Budget ID</th>
+            <th>Title</th>
+            <th>Allocation</th>
+            <th>Timeline</th>
+            <th class="text-center">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let budget of departmentBudgets">
+            <td class="ps-4 fw-bold text-primary">{{ budget.budgetId }}</td>
+            <td>
+              <div class="fw-medium">{{ budget.title }}</div>
+            </td>
+            <td>₹{{ budget.amountAllocated | number }}</td>
+            <td>
+              <small class="text-muted d-block">Start: {{ budget.startDate }}</small>
+              <small class="text-muted d-block">End: {{ budget.endDate }}</small>
+            </td>
+            <td class="text-center">
+              <span class="badge rounded-pill" 
+                [ngClass]="budget.status === 'Active' ? 'bg-success-subtle text-success border border-success-subtle' : 'bg-secondary-subtle text-secondary border border-secondary-subtle'">
+                {{ budget.status }}
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="departmentBudgets.length === 0">
+            <td colspan="5" class="text-center py-5 text-muted">
+              <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+              No budgets found for the {{ managerDept }} department.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

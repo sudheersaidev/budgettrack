@@ -1,0 +1,64 @@
+<div class="page-container">
+  <div class="row g-0 h-100">
+    
+    <div class="col-md-6 d-none d-md-flex left-display-section">
+      <div class="content-wrapper">
+        <div class="text-top-area mb-4">
+          <h1 class="display-5 fw-bold typewriter-text mt-5">{{ typewriterText }}</h1>
+          <p class="lead text-muted mt-2">The smarter way to track your expenses.
+ </p>
+        </div>
+        
+        <div class="image-box-container">
+          <img src="/assets/Loginimage.jpg" alt="Login Illustration" class="scaled-image">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 form-section d-flex align-items-center justify-content-center p-4">
+      <div class="login-glass-card mt-5">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold m-0 text-slate">Sign In</h2>
+          <p class="subtitle mt-1">Enter your credentials to continue</p>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="field-wrapper mb-3">
+            <label>Email Address</label>
+            <input type="email" formControlName="email" placeholder="name@company.com"
+                   [class.invalid-field]="submitted && loginForm.get('email')?.invalid">
+            <div *ngIf="submitted && loginForm.get('email')?.errors" class="error-text">
+              <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</small>
+              <small *ngIf="loginForm.get('email')?.errors?.['email']">Enter a valid email address</small>
+            </div>
+          </div>
+
+          <div class="field-wrapper mb-4">
+            <label>Password</label>
+            <div class="password-wrapper">
+              <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="••••••••"
+                     [class.invalid-field]="submitted && loginForm.get('password')?.invalid">
+              <button type="button" class="toggle-btn" (click)="showPassword = !showPassword">
+                <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+              </button>
+            </div>
+            <div *ngIf="submitted && loginForm.get('password')?.errors" class="error-text">
+              <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</small>
+            </div>
+          </div>
+
+          <button type="submit" class="login-btn" [disabled]="isLockedOut">
+             {{ isLockedOut ? 'Locked (' + lockoutTimeRemaining + 's)' : 'Sign In' }}
+          </button>
+        </form>
+        
+        <div class="text-center mt-4">
+          <p class="small text-muted">New here? 
+            <a routerLink="/register" class="text-indigo fw-bold">Create Account</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

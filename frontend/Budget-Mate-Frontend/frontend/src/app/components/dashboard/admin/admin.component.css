@@ -1,0 +1,74 @@
+.main-layout-container {
+  background-color: #f4f7fe;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+/* Center the pill navigation */
+.nav-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.pill-nav {
+  display: flex;
+  background: white;
+  padding: 6px;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.pill-nav button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #718096;
+  cursor: pointer;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+}
+
+/* Active State Styles */
+.pill-nav button.active {
+  background-color: #1e88e5; /* Primary Blue */
+  color: white;
+  box-shadow: 0 4px 15px rgba(30, 136, 229, 0.4);
+}
+
+.pill-nav button:hover:not(.active) {
+  background-color: #f7fafc;
+  color: #2d3748;
+}
+
+.btn-icon {
+  stroke: currentColor;
+}
+
+/* Content Area Transitions */
+.content-fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+  padding: 0 20px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Extra styling for user management container */
+.user-management-box {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}

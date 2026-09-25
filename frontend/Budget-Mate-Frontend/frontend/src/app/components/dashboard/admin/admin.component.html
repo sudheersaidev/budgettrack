@@ -1,0 +1,70 @@
+<app-navbar-admin></app-navbar-admin>
+
+<div class="main-layout-container pb-5">
+  <app-header></app-header>
+
+  <div class="container mt-4 mb-5">
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <div class="pill-nav shadow-sm bg-white p-1 rounded-pill border d-flex">
+          
+          <button 
+            class="nav-btn"
+            [class.active]="activeTab === 'utilization'" 
+            (click)="switchTab('utilization')">
+            <i class="bi bi-bar-chart-line-fill me-2"></i>
+            Budget Utilization
+          </button>
+
+          <button 
+            class="nav-btn"
+            [class.active]="activeTab === 'expenses'" 
+            (click)="switchTab('expenses')">
+            <i class="bi bi-pie-chart-fill me-2"></i>
+            Expenses & Config
+          </button>
+          
+          <button 
+            class="nav-btn"
+            [class.active]="activeTab === 'users'" 
+            (click)="switchTab('users')">
+            <i class="bi bi-people-fill me-2"></i>
+            User Management
+          </button>
+
+          <button 
+            class="nav-btn"
+            [class.active]="activeTab === 'budget-change'" 
+            (click)="switchTab('budget-change')"> <i class="bi bi-person-gear me-2"></i>
+            Budget Ownership
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container content-fade-in">
+    <div class="row">
+      <div class="col-12">
+        
+        <div *ngIf="activeTab === 'utilization'" class="animate-box">
+          <app-budget-usage></app-budget-usage>
+        </div>
+
+        <div *ngIf="activeTab === 'expenses'" class="animate-box">
+          <app-expense-configuration></app-expense-configuration>
+        </div>
+
+        <div *ngIf="activeTab === 'users'" class="white-box p-3 shadow-sm rounded-4">
+          <app-user-management></app-user-management>
+        </div>
+        
+        <div *ngIf="activeTab === 'budget-change'" class="white-box p-3 shadow-sm rounded-4">
+          <app-budget-manager-change></app-budget-manager-change>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

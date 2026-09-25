@@ -1,0 +1,39 @@
+/* Custom Utility Colors */
+.bg-primary-light { background-color: rgba(59, 130, 246, 0.1); }
+.bg-success-light { background-color: rgba(16, 185, 129, 0.1); }
+.bg-danger-light { background-color: rgba(239, 68, 68, 0.1); }
+.bg-soft-danger { background-color: #fff5f5; }
+
+/* Wrapper & Search */
+.user-management-wrapper { background-color: #f8fafc; min-height: 100vh; }
+
+.search-wrapper { position: relative; }
+.search-icon { position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+.search-wrapper input { border-radius: 12px; height: 50px; border: 1px solid #e2e8f0; font-size: 0.95rem; }
+
+/* Card Styling */
+.user-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; border-radius: 20px !important; }
+.user-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1) !important; }
+
+.status-indicator { position: absolute; top: 1.5rem; right: 1.5rem; width: 12px; height: 12px; border-radius: 50%; background-color: #ef4444; border: 2px solid #fff; }
+.status-indicator.active { background-color: #10b981; }
+
+.avatar-circle { width: 70px; height: 70px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
+
+.role-badge { font-size: 0.7rem; letter-spacing: 0.5px; text-transform: uppercase; }
+
+/* Modal Improvements */
+.modal-content { border-radius: 24px !important; }
+.modal-header { border-top-left-radius: 24px; border-top-right-radius: 24px; }
+.list-group-item { font-size: 0.95rem; }
+.font-monospace { font-family: 'JetBrains Mono', 'Courier New', monospace !important; }
+
+/* Icon Box for Header */
+.icon-box { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+
+/* Modal Animations */
+.modal.fade.show { animation: fadeInScale 0.2s ease-out; }
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

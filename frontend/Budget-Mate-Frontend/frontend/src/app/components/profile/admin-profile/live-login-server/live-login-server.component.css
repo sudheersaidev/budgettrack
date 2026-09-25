@@ -1,0 +1,45 @@
+.bg-light { background-color: #f4f7f6 !important; }
+
+.log-container::-webkit-scrollbar { width: 4px; }
+.log-container::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 10px; }
+
+.status-indicator {
+  width: 10px; height: 10px;
+  background-color: #0d6efd;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+}
+
+.log-row {
+  transition: all 0.2s ease;
+  background: white;
+  cursor: pointer;
+}
+
+.log-row:hover {
+  background-color: #f8fbff;
+  border-left: 4px solid #0d6efd;
+}
+
+.bg-selected {
+  background-color: #f0f7ff !important;
+  border-left: 4px solid #0d6efd !important;
+}
+
+.time-column {
+  min-width: 80px;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sublte badge colors */
+.bg-danger-subtle { background-color: #fee2e2; }
+.bg-warning-subtle { background-color: #fef3c7; }
+.bg-info-subtle { background-color: #e0f2fe; }

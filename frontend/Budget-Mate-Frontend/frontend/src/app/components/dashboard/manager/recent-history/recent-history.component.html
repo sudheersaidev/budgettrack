@@ -1,0 +1,95 @@
+<div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead>
+      <tr class="bg-light">
+        <th class="ps-3 border-0">ID</th>
+        <th class="border-0">Title / Description</th>
+        <th class="border-0">Created By</th>
+        <th class="text-end border-0">Allocation</th>
+        <th class="border-0">Duration</th>
+        <th class="text-center border-0">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (budget of paginatedBudgets; track budget.budgetId) {
+        <tr>
+          <td class="ps-3">
+            <span class="badge bg-light text-primary border fw-bold">
+              #{{ budget.budgetId }}
+            </span>
+          </td>
+          <td>
+            <div class="fw-semibold text-dark">{{ budget.title }}</div>
+            <div class="text-muted extra-small" style="font-size: 0.75rem;">Budget Entry</div>
+          </td>
+          
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="avatar-circle me-2 bg-primary-subtle text-primary fw-bold d-flex align-items-center justify-content-center" 
+                   style="width: 30px; height: 30px; border-radius: 50%; font-size: 11px;">
+                {{ budget.createdByManager?.charAt(0) || 'M' }}
+              </div>
+              <span class="small fw-medium">{{ budget.createdByManager || 'System' }}</span>
+            </div>
+          </td>
+
+          <td class="text-end fw-bold text-dark">
+            {{ budget.amountAllocated | currency:'INR':'symbol':'1.0-0' }}
+          </td>
+
+          <td>
+            <div class="small fw-bold text-secondary">{{ budget.startDate | date:'mediumDate' }}</div>
+            <div class="text-muted" style="font-size: 11px;">
+              to {{ (budget.endDate | date:'mediumDate') || 'Present' }}
+            </div>
+          </td>
+
+          <td class="text-center">
+            <button 
+              class="btn status-pill border-0 py-1 px-3 rounded-pill fw-bold small transition-all"
+              (click)="handleStatusUpdate(budget)"
+              [ngClass]="budget.status === 'Active' ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'"
+              title="Click to Toggle Status"
+              style="font-size: 0.7rem; letter-spacing: 0.5px;">
+              <i class="bi me-1" [ngClass]="budget.status === 'Active' ? 'bi-check-circle-fill' : 'bi-x-circle-fill'"></i>
+              {{ budget.status | uppercase }}
+            </button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6" class="text-center py-5">
+            <div class="py-4">
+              <i class="bi bi-folder2-open display-4 text-light d-block mb-3"></i>
+              <h5 class="text-muted fw-normal">No managed budgets found</h5>
+              <p class="small text-secondary">New entries you create will appear here.</p>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mt-3 px-3 pb-3 border-top pt-3">
+  <div class="small text-muted">
+    Showing <b>{{ paginatedBudgets.length }}</b> of <b>{{ budgets.length }}</b> entries
+  </div>
+  <div class="btn-group shadow-sm" style="border-radius: 8px; overflow: hidden;">
+    <button 
+      class="btn btn-sm btn-white border border-end-0" 
+      [disabled]="currentPage === 1" 
+      (click)="goToPreviousPage()">
+      <i class="bi bi-chevron-left me-1"></i> Prev
+    </button>
+    <button class="btn btn-sm btn-primary border-none px-3 fw-bold" style="pointer-events: none;">
+      {{ currentPage }} / {{ totalPages }}
+    </button>
+    <button 
+      class="btn btn-sm btn-white border border-start-0" 
+      [disabled]="currentPage >= totalPages" 
+      (click)="goToNextPage()">
+      Next <i class="bi bi-chevron-right ms-1"></i>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+<div class="main-container fade-in container my-4">
+  
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-dark mb-1">Expense Tracking</h2>
+      <p class="text-muted mb-0">Review and filter all expenses for <span class="badge bg-primary-soft text-primary">{{ userDepartment }}</span></p>
+    </div>
+    <div class="stats-pills d-flex gap-3">
+      <div class="stat-pill">
+        <span class="label">Total Found</span>
+        <span class="value">{{ expenses.length }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card filter-card shadow-sm border-0 mb-4 slide-in">
+    <div class="card-header border-0 d-flex justify-content-between align-items-center">
+      <h6 class="mb-0 fw-bold"><i class="bi bi-sliders2-vertical me-2"></i>Filter Explorer</h6>
+      <button class="btn-reset" (click)="resetFilters()">
+        <i class="bi bi-arrow-counterclockwise"></i> Reset
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="row g-4 align-items-end">
+        
+        <div class="col-md-3">
+          <label class="filter-label">Budget Reference</label>
+          <div class="input-group-custom">
+            <i class="bi bi-tag select-icon"></i>
+            <select class="form-select border-0" [(ngModel)]="filterBudgetId" (change)="applyFilters()">
+              <option value="">All Budgets</option>
+              <option *ngFor="let id of budgetIdList" [value]="id">{{id}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <label class="filter-label">Approval Status</label>
+          <select class="form-select border-0" [(ngModel)]="filterStatus" (change)="applyFilters()">
+            <option value="">Everything</option>
+            <option value="Approved">Approved</option>
+            <option value="Pending">Pending</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label class="filter-label">Period (Month)</label>
+          <select class="form-select border-0" [(ngModel)]="filterMonth" (change)="applyFilters()">
+            <option value="">All Time</option>
+            <option *ngFor="let m of months" [value]="m">{{m}}</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <div class="d-flex justify-content-between mb-2">
+            <label class="filter-label mb-0">Price Ceiling</label>
+            <span class="price-indicator">₹{{filterMaxAmount | number}}</span>
+          </div>
+          <input type="range" class="form-range custom-range" [min]="0" [max]="maxPossibleAmount" step="500" 
+                 [(ngModel)]="filterMaxAmount" (input)="applyFilters()">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card table-card shadow-sm border-0 slide-in" style="animation-delay: 0.1s;">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th class="ps-4">ID & Budget</th>
+              <th>Description</th>
+              <th class="text-end">Amount</th>
+              <th class="text-center">Status</th>
+              <th class="ps-4">Submission Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let exp of expenses" class="table-row-animate">
+              <td class="ps-4">
+                <div class="d-flex flex-column">
+                  <span class="fw-bold text-dark">{{ exp.expenseId }}</span>
+                  <span class="text-primary small fw-semibold">{{ exp.budgetId }}</span>
+                </div>
+              </td>
+              <td>
+                <div class="description-cell">
+                  {{ exp.description }}
+                </div>
+              </td>
+              <td class="text-end fw-bold text-dark">
+                ₹{{ exp.amount | number }}
+              </td>
+              <td class="text-center">
+              <span class="status-badge"
+                [ngClass]="{
+                  'status-approved': exp.status === 'Approved',
+                  'status-pending': exp.status === 'Pending',
+                  'status-rejected': exp.status === 'Rejected'
+                }"
+                [style.cursor]="exp.status === 'Rejected' ? 'pointer' : 'default'"
+                (click)="exp.status === 'Rejected' ? showRejectedReason(exp) : null"
+                [title]="exp.status === 'Rejected' ? 'Click to view reason' : ''">
+                <i class="bi bi-dot fs-4"></i>
+                {{ exp.status }}
+                <i *ngIf="exp.status === 'Rejected'" class="bi bi-info-circle ms-1" style="font-size: 0.75rem;"></i>
+              </span>
+            </td>
+              <td class="ps-4">
+                <div class="d-flex align-items-center text-muted small">
+                  <i class="bi bi-calendar3 me-2"></i>
+                  {{ exp.submittedDate | date:'mediumDate' }}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="expenses.length === 0" class="empty-state">
+        <div class="empty-icon-wrapper">
+          <i class="bi bi-clipboard-x"></i>
+        </div>
+        <h4>No matches found</h4>
+        <p>Try adjusting your filters to find the expenses you're looking for.</p>
+        <button class="btn btn-primary btn-sm rounded-pill px-4" (click)="resetFilters()">Clear All Filters</button>
+      </div>
+    </div>
+  </div>
+</div>

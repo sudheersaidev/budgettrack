@@ -1,0 +1,17 @@
+# Visual Studio temporary files
+.vs/
+
+# Build folders
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET Core/Web temporary files
+appsettings.Development.json
+
+appsettings.Local.json
+appsettings.*.local.json

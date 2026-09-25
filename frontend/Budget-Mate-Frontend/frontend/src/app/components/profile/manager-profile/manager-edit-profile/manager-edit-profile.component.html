@@ -1,0 +1,64 @@
+<div class="card border-0 shadow-sm">
+  <div class="card-header bg-white py-3">
+    <h6 class="mb-0 fw-bold text-dark">
+      <i class="bi bi-person-gear me-2 text-primary"></i>Edit Manager Details
+    </h6>
+  </div>
+  <div class="card-body p-4">
+    
+    <form (ngSubmit)="updateProfile()">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <label class="form-label small fw-bold">Full Name</label>
+          <input type="text" class="form-control" [(ngModel)]="managerData.name" name="name" required placeholder="Enter full name">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label small fw-bold">Email Address</label>
+          <input type="email" class="form-control bg-light" [value]="managerData.email" disabled>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label small fw-bold">Department</label>
+          <input type="text" class="form-control bg-light" [value]="managerData.department" disabled>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label small fw-bold">Manager ID</label>
+          <input type="text" class="form-control bg-light" [value]="managerData.userID" disabled>
+        </div>
+
+        <div class="col-12 py-2">
+           <hr class="text-muted opacity-25">
+           <h6 class="fw-bold mb-3"><i class="bi bi-shield-lock me-2 text-secondary"></i>Security Settings</h6>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label small fw-bold">New Password</label>
+          <div class="input-group shadow-sm">
+            <input [type]="isPasswordVisible ? 'text' : 'password'" class="form-control border-end-0" [(ngModel)]="managerData.password" name="password" placeholder="••••••••">
+            <button class="btn btn-outline-secondary border-start-0 bg-white text-muted" type="button" (click)="togglePasswordVisibility()">
+              <i class="bi" [ngClass]="isPasswordVisible ? 'bi-eye-slash' : 'bi-eye'"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label small fw-bold">Confirm Password</label>
+          <div class="input-group shadow-sm">
+            <input [type]="isConfirmVisible ? 'text' : 'password'" class="form-control border-end-0" [(ngModel)]="managerData.confirmPassword" name="confirmPassword" placeholder="••••••••">
+            <button class="btn btn-outline-secondary border-start-0 bg-white text-muted" type="button" (click)="toggleConfirmVisibility()">
+              <i class="bi" [ngClass]="isConfirmVisible ? 'bi-eye-slash' : 'bi-eye'"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-12 mt-5 text-end">
+          <button type="submit" class="btn btn-primary px-5 py-2 fw-bold shadow-sm rounded-pill">
+            Update Profile
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

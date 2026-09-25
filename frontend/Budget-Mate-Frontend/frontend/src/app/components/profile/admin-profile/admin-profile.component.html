@@ -1,0 +1,46 @@
+<app-navbar-admin></app-navbar-admin> 
+
+<div class="dashboard-container">
+  <div class="back-nav" routerLink="/admin">
+    <span>← Back to Dashboard</span>
+  </div>
+
+  <div class="profile-card" *ngIf="currentUser; else loading">
+    <div class="profile-info">
+      <div class="avatar">{{ currentUser.name?.charAt(0) || 'A' }}</div>
+      <div class="user-details">
+        <h1>{{ currentUser.name }}</h1>
+        <div class="meta-info">
+          <span>ID: <strong>{{ currentUser.userID || 'Not Found' }}</strong></span>
+          <span>Status: 
+            <strong [ngClass]="{'text-success': currentUser.status === 'Active', 'text-danger': currentUser.status !== 'Active'}">
+              {{ currentUser.status || 'Not Found' }}
+            </strong>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="badge">{{ currentUser.role }}</div>
+  </div>
+
+  <ng-template #loading>
+    <div class="profile-card text-center p-5">
+      <div class="spinner-border text-primary"></div>
+      <p>Fetching latest profile data...</p>
+    </div>
+  </ng-template>
+
+  <div class="tab-navigation">
+    <button [class.active]="activeTab === 'notifications'" (click)="activeTab = 'notifications'">Notifications</button>
+    <button [class.active]="activeTab === 'liveserver'" (click)="activeTab = 'liveserver'">Live Server</button> 
+    <button [class.active]="activeTab === 'profile'" (click)="activeTab = 'profile'">Edit Profile</button>
+  </div>
+
+  <hr class="divider">
+
+  <div class="tab-content">
+    <app-admin-notifications *ngIf="activeTab === 'notifications'"></app-admin-notifications>
+    <app-live-login-server *ngIf="activeTab === 'liveserver'"></app-live-login-server>
+    <app-admin-profile-edit *ngIf="activeTab === 'profile'" (profileSaved)="refreshUserData()"></app-admin-profile-edit>
+  </div>
+</div>

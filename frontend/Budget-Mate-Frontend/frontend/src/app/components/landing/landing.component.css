@@ -1,0 +1,110 @@
+/* Container & Backgrounds */
+.main-container {
+  background-color: #2D336B; /* Dark navy from image */
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+
+.white-section {
+  /* This HEX exactly matches the illustration background */
+  background-color: #F8F9F7; 
+  padding: 40px 80px 120px 80px;
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  position: relative;
+}
+
+/* Nav & Branding */
+.top-nav { margin-bottom: 60px; }
+.brand-name {
+  color: #2D336B;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+/* Hero Content Alignment */
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.hero-text h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.blue-text { color: #2563eb; }
+
+.hero-text p {
+  color: #666;
+  max-width: 450px;
+  margin: 30px 0;
+  font-size: 1.1rem;
+}
+
+.get-started-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 16px 36px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+/* BLENDING THE IMAGE */
+.hero-image img { 
+  width: 500px; 
+  display: block;
+  /* multiply removes white backgrounds so it blends perfectly */
+  mix-blend-mode: multiply; 
+}
+
+/* Drip Effect matching the background */
+.drips {
+  position: absolute;
+  bottom: -40px;
+  left: 60px;
+  display: flex;
+  gap: 10px;
+}
+.drip { background: #F8F9F7; width: 12px; border-radius: 20px; }
+.small { height: 50px; }
+.tall { height: 90px; }
+.medium { height: 65px; }
+
+/* Dark Features Section */
+.dark-section { padding: 100px 80px; text-align: center; }
+.dark-section h2 { color: white; margin-bottom: 60px; font-size: 2.2rem; }
+
+.features-grid { display: flex; gap: 24px; }
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 30px;
+  border-radius: 40px;
+  display: flex;
+  text-align: left;
+  gap: 20px;
+  flex: 1;
+}
+
+.icon-square {
+  background: white;
+  min-width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.card h3 { color: white; margin: 0 0 10px 0; }
+.card p { color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; }

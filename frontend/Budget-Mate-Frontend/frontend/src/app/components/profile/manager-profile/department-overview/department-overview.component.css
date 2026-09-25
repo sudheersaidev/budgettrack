@@ -1,0 +1,25 @@
+.dept-overview-container {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.bg-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #004fb1 100%) !important;
+}
+
+.table th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.badge {
+  font-weight: 600;
+  padding: 0.5em 1em;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

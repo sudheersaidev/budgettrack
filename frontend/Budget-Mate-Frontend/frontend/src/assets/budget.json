@@ -1,0 +1,92 @@
+[
+  {
+    "budgetId": "BUD001",
+    "title": "IT Infrastructure",
+    "department": "IT",
+    "amountAllocated": 500000,
+    "startDate": "2025-01-01",
+    "endDate": "2025-03-31",
+    "status": "Active"
+  },
+  {
+    "budgetId": "BUD002",
+    "title": "HR Training Program",
+    "department": "HR",
+    "amountAllocated": 200000,
+    "startDate": "2025-02-01",
+    "endDate": "2025-04-30",
+    "status": "Active"
+  },
+  {
+    "budgetId": "BUD003",
+    "title": "Financial Audit",
+    "department": "Finance",
+    "amountAllocated": 350000,
+    "startDate": "2025-01-01",
+    "endDate": "2025-03-31",
+    "status": "Closed"
+  },
+  {
+    "budgetId": "BUD004",
+    "title": "Marketing Campaign Q1",
+    "department": "Marketing",
+    "amountAllocated": 400000,
+    "startDate": "2025-01-01",
+    "endDate": "2025-03-31",
+    "status": "Active"
+  },
+  {
+    "budgetId": "BUD005",
+    "title": "Software Licenses",
+    "department": "IT",
+    "amountAllocated": 180000,
+    "startDate": "2025-03-01",
+    "endDate": "2025-06-30",
+    "status": "Active"
+  },
+  {
+    "budgetId": "BUD006",
+    "title": "Recruitment Drive",
+    "department": "HR",
+    "amountAllocated": 250000,
+    "startDate": "2025-04-01",
+    "endDate": "2025-06-30",
+    "status": "Active"
+  },
+  {
+    "budgetId": "BUD007",
+    "title": "Tax Compliance",
+    "department": "Finance",
+    "amountAllocated": 150000,
+    "startDate": "2025-02-01",
+    "endDate": "2025-05-31",
+    "status": "Active"
+  },
+  {
+    "budgetId": "BUD008",
+    "title": "Digital Marketing Ads",
+    "department": "Marketing",
+    "amountAllocated": 300000,
+    "startDate": "2025-03-01",
+    "endDate": "2025-06-30",
+    "status": "Active"
+  },
+  {
+    "budgetId": "BUD009",
+    "title": "IT Security Upgrade",
+    "department": "IT",
+    "amountAllocated": 220000,
+    "startDate": "2025-04-01",
+    "endDate": "2025-06-30",
+    "status": "Active"
+  },
+  {
+    "budgetId": "BUD010",
+    "title": "Brand Promotion Event",
+    "department": "Marketing",
+    "amountAllocated": 175000,
+    "startDate": "2025-02-01",
+    "endDate": "2025-04-30",
+    "status": "Closed"
+  }
+]

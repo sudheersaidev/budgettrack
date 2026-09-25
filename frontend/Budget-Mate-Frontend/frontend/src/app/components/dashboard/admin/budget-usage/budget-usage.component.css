@@ -1,0 +1,151 @@
+:host {
+  --text-dark: #0f172a;
+  --text-light: #64748b;
+  --primary-blue: #2563eb;
+  --spent-orange: #ea580c;
+  --success-green: #10b981;
+  --bg-light: #f8fafc;
+}
+
+.utilization-container {
+  background-color: var(--bg-light);
+  min-height: 100vh;
+}
+
+.section-title {
+  color: var(--text-dark);
+  font-weight: 800;
+  font-size: 1.75rem;
+}
+
+.section-subtitle {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+/* Enhanced Department Card */
+.dept-card-enhanced {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dept-card-enhanced:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.dept-name {
+  font-weight: 800;
+  color: var(--text-dark);
+  font-size: 1.25rem;
+}
+
+/* Pills and Stats */
+.remaining-pill {
+  background: #f0fdf4;
+  color: #15803d;
+  padding: 0.5rem 1rem;
+  border-radius: 50rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: 1px solid #dcfce7;
+}
+
+.main-stats {
+  background: #fcfcfc;
+  border: 1px solid #f1f5f9;
+  border-radius: 1rem;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background-color: #e2e8f0;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.color-allocated {
+  color: var(--primary-blue);
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.color-spent {
+  color: var(--spent-orange);
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+/* Utilization Progress Bar */
+.usage-text {
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.percentage {
+  color: var(--success-green);
+  font-weight: 800;
+}
+
+.percentage.high-risk {
+  color: #ef4444;
+}
+
+.bar-container {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  transition: width 1s ease-in-out;
+}
+
+.bar-fill.high-risk-bg {
+  background: linear-gradient(90deg, #f87171, #ef4444);
+}
+
+/* Report Button */
+.generate-report-btn {
+  background-color: var(--primary-blue);
+  color: white;
+  border: none;
+  padding: 0.75rem 2.5rem;
+  border-radius: 50rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+.generate-report-btn:hover:not(:disabled) {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* Spinner for Loading State */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

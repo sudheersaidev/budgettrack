@@ -1,0 +1,122 @@
+/* Custom Navbar Background (Dark Graphite) */
+.custom-navbar {
+    background-color: #1e2125; /* Deep dark grey like image 3 */
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Brand Styling */
+.brand-icon-box {
+    background: #0d6efd;
+    color: white;
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.brand-text {
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    font-size: 1.25rem;
+}
+
+/* Action Buttons */
+.btn-create {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    transition: all 0.2s;
+}
+
+.btn-create:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+.nav-action-btn {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    border: none;
+    transition: 0.2s;
+}
+
+.nav-action-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Profile Pill Styling (Matches image 2 and 3) */
+.profile-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 4px 12px 4px 4px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.profile-pill:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.avatar-circle {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #6366f1, #0d6efd);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.user-name {
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.user-role {
+    color: #0dcaf0; /* Cyan for the role text */
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.chevron-icon {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Dropdown Menu */
+.custom-dropdown {
+    background: #2b3035;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.5rem;
+    min-width: 200px;
+}
+
+.custom-dropdown .dropdown-item {
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+}
+
+.custom-dropdown .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}

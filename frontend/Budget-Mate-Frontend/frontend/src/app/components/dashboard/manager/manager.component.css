@@ -1,0 +1,123 @@
+/* Premium Modal Styling */
+.modal-content-premium {
+    border: none;
+    border-radius: 24px !important;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.modal-glass {
+    backdrop-filter: blur(8px);
+}
+
+/* Form Styling */
+.form-label {
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.3px;
+}
+
+.form-control {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 4px rgba(78, 115, 223, 0.1);
+}
+
+/* Input Group Enhancements */
+.input-group-text {
+    font-weight: 600;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+/* Specific Border Colors for Allocation vs Limitation */
+.border-primary {
+    border: 1.5px solid #4e73df !important;
+}
+
+.border-danger {
+    border: 1.5px solid #e74a3b !important;
+}
+
+/* Helper Text */
+.text-muted.small {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Modal Footer Buttons */
+.btn-primary.shadow {
+    box-shadow: 0 4px 15px rgba(78, 115, 223, 0.35) !important;
+}
+
+.btn-primary.shadow:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(78, 115, 223, 0.45) !important;
+}
+
+/* Micro-animations for the form */
+.modal-body form .col-md-6, .modal-body form .col-12 {
+    animation: slideUp 0.4s ease forwards;
+    opacity: 0;
+}
+
+.modal-body form .col-md-6:nth-child(1) { animation-delay: 0.1s; }
+.modal-body form .col-md-6:nth-child(2) { animation-delay: 0.15s; }
+.modal-body form .col-12:nth-child(3) { animation-delay: 0.2s; }
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Custom styling for Session Info Alert */
+.session-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.clock-box {
+    letter-spacing: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#swal-live-clock {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.swal2-title {
+    color: #4e73df !important;
+    font-size: 1.5rem !important;
+}
+
+.swal2-html-container {
+    overflow: hidden !important; /* Prevents scrollbars in the card */
+}
+
+.min-height-custom {
+    min-height: 38px;
+}
+
+.dropdown-menu {
+    display: block; /* Managed by *ngIf */
+    z-index: 1100;
+}
+
+.dropdown-item:active {
+    background-color: #f8f9fa;
+    color: black;
+}
+
+.dropdown-item:hover {
+    background-color: #eef2ff;
+}
+
+.badge i:hover {
+    color: #ffb7b7;
+}
+
+.modal-glass {
+    backdrop-filter: blur(5px);
+}

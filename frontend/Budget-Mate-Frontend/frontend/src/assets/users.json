@@ -1,0 +1,38 @@
+[
+  {
+    "userId": "U1001",
+    "name": "Shushanth B S",
+    "role": "Employee",
+    "email": "shushanth@company.com",
+    "password": "1234",
+    "department": "Finance",
+    "status": "Active"
+  },
+  {
+    "userId": "U1002",
+    "name": "Ramkumar M",
+    "role": "Manager",
+    "email": "ramkumar@company.com",
+    "password": "1234",
+    "department": "Finance",
+    "status": "Active"
+  },
+  {
+    "userId": "U1004",
+    "name": "Meena Sharma",
+    "role": "Manager",
+    "email": "meena@company.com",
+    "password": "1234",
+    "department": "Finance",
+    "status": "Active"
+  },
+  {
+    "userId": "U1008",
+    "name": "Ramesh Gupta",
+    "role": "Admin",
+    "email": "ramesh@company.com",
+    "password": "1234",
+    "department": "Admin",
+    "status": "Active"
+  }
+]

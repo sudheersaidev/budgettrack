@@ -1,0 +1,53 @@
+/* Tighten the card body and spacing */
+.card-body {
+  padding: 1.5rem !important;
+}
+
+/* Adjust the grid ratio: Give the list a bit more breathing room */
+.chart-col {
+  padding-right: 2rem;
+}
+
+/* Allocation List Styling */
+.allocation-item {
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 8px !important;
+  background: #fcfdfe;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.allocation-item:hover {
+  background: #ffffff;
+  border-color: #e3e6f0;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Typography refinements */
+.allocation-title {
+  font-size: 0.85rem;
+  color: #4a5568;
+  letter-spacing: -0.01em;
+}
+
+.percentage-badge {
+  font-size: 0.8rem;
+  background: #eef2ff;
+  color: #4e73df;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Download Button refinement */
+.btn-outline-primary {
+  border: 1.5px solid #4e73df;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: #4e73df;
+  color: white;
+  transform: translateY(-2px);
+}

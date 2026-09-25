@@ -1,0 +1,78 @@
+<app-navbar-employee 
+  [userName]="userName" 
+  [userRole]="userRole" 
+  (logoutNotify)="logout()"
+  (navigateNotify)="setView('expense-status')" 
+  (dashboardNotify)="setView('dashboard')"
+  (newExpenseNotify)="setView('new-expense')">
+</app-navbar-employee>
+
+<div class="container my-4">
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-3 mb-4 border-bottom">
+    <div class="mb-3 mb-md-0">
+      <h1 class="h2 fw-bold text-dark mb-1">
+        <i class="bi bi-person-badge me-2 text-primary"></i>Employee Dashboard
+      </h1>
+      <p class="text-muted mb-0">
+        Overview for <span class="fw-semibold text-primary">{{ userDepartment }}</span> department
+      </p>
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+      <div class="bg-white px-3 py-2 rounded-3 shadow-sm border d-none d-sm-block">
+        <small class="text-muted d-block lh-1 small fw-bold text-uppercase" style="font-size: 0.7rem;">
+          Current Period
+        </small>
+        <span class="fw-bold text-dark">Jan 2026 - Dec 2026</span>
+      </div>
+      <div class="bg-primary text-white px-3 py-2 rounded-3 shadow-sm">
+        <i class="bi bi-calendar3 me-2"></i>
+        <span class="fw-bold">Today</span>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="currentView === 'dashboard'">
+    
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <div class="card bg-primary text-white border-0 shadow-sm p-4 h-100">
+          <div class="small opacity-75 fw-bold text-uppercase mb-2">Total Dept Budget</div>
+          <h2 class="display-6 fw-bold mb-0">₹ {{ totalDeptBudget | number }}</h2>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card bg-warning text-dark border-0 shadow-sm p-4 h-100">
+          <div class="small opacity-75 fw-bold text-uppercase mb-2">Pending Approvals</div>
+          <h2 class="display-6 fw-bold mb-0">₹ {{ pendingApprovalsAmount | number }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center mb-4">
+      <div class="bg-white rounded-pill shadow-sm p-1 border">
+        <button class="btn rounded-pill px-4 transition-all" 
+                [ngClass]="activeTab === 'utilization' ? 'btn-primary shadow-sm' : 'btn-light text-muted'" 
+                (click)="setTab('utilization')">
+          New Log Expense
+        </button>
+        <button class="btn rounded-pill px-4 transition-all" 
+                [ngClass]="activeTab === 'history' ? 'btn-primary shadow-sm' : 'btn-light text-muted'" 
+                (click)="setTab('history')">
+          Expense Screen
+        </button>
+      </div>
+    </div>
+
+    <div class="tab-content">
+      <section *ngIf="activeTab === 'utilization'" class="animate-fade-in">
+        <app-new-expense (expenseSubmitted)="loadDashboardStats()"></app-new-expense>
+      </section>
+
+      <section *ngIf="activeTab === 'history'" class="animate-fade-in">
+        <app-expense-status></app-expense-status>
+      </section>
+    </div>
+
+  </ng-container>
+</div>

@@ -1,0 +1,76 @@
+<div class="container mt-4">
+    <div class="card shadow-sm border-0 p-4">
+        <h3 class="text-primary mb-4">
+            <i class="bi bi-person-badge me-2"></i>Transfer Budget Ownership
+        </h3>
+
+        <div class="row g-3">
+            <div class="col-md-5">
+                <label class="form-label fw-bold">Select Budget</label>
+                <select class="form-select" [(ngModel)]="selectedBudgetId">
+                    <option value="" disabled selected>Choose a budget...</option>
+                    <option *ngFor="let b of budgets" [value]="b.budgetId">
+                        {{ b.budgetId }} - {{ b.title }} (Current: {{ b.createdByManager }})
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-5">
+                <label class="form-label fw-bold">New Manager</label>
+                <select class="form-select" [(ngModel)]="selectedManagerName">
+                    <option value="" disabled selected>Select new manager...</option>
+                    <option *ngFor="let m of managers" [value]="m.name">
+                        {{ m.name }} 
+                        <ng-container *ngIf="m.status === 'Inactive'">
+                            (ID: {{ m.userID }} - INACTIVE)
+                        </ng-container>
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end">
+                <button class="btn btn-primary w-100" 
+                        [disabled]="loading"
+                        (click)="submitTransfer()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                    Update
+                </button>
+            </div>
+        </div>
+
+        <hr class="my-5">
+
+        <h5 class="text-secondary mb-3">Current Budget Assignments</h5>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Budget Title</th>
+                        <th>Department</th>
+                        <th>Manager</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let b of budgets">
+                        <td><span class="badge bg-light text-dark border">{{ b.budgetId }}</span></td>
+                        <td>{{ b.title }}</td>
+                        <td>{{ b.department }}</td>
+                        <td><strong class="text-primary">{{ b.createdByManager }}</strong></td>
+                        <td>
+                            <span class="badge" [ngClass]="b.status === 'Active' ? 'bg-success' : 'bg-danger'">
+                                {{ b.status }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="budgets.length === 0">
+                        <td colspan="5" class="text-center py-4 text-muted">
+                            No budgets found.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

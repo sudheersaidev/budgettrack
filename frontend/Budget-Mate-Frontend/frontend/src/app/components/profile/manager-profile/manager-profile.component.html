@@ -1,0 +1,91 @@
+<app-navbar-manager 
+  [userName]="userName" 
+  [userRole]="userRole"
+  [showCreateButton]="true" 
+  [showApprovalsButton]="true"
+  (onNewBudget)="handleCreateBudgetClick()"
+  (onApprovalClick)="handleApprovalClick()">
+</app-navbar-manager>
+
+<div class="min-vh-100 bg-light pb-5">
+  <div class="container py-4">
+    
+    <div class="mb-3">
+      <a routerLink="/manager" class="text-decoration-none text-muted d-inline-flex align-items-center gap-2 small fw-medium">
+        <i class="bi bi-arrow-left"></i> Back to Dashboard
+      </a>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4 overflow-hidden profile-card">
+      <div class="card-body p-4">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <div class="avatar-circle shadow">
+              {{ userName.charAt(0) || 'M' }}
+            </div>
+          </div>
+          
+          <div class="col">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <h3 class="mb-1 fw-bold text-dark">{{userName}}</h3>
+                <div class="d-flex flex-wrap gap-3">
+                  <small class="text-muted"><i class="bi bi-fingerprint me-1"></i>ID: <strong>{{userId}}</strong></small>
+                  <small class="text-muted"><i class="bi bi-building me-1"></i>Dept: <strong>{{userDepartment}}</strong></small>
+                </div>
+              </div>
+              <span class="badge rounded-pill badge-manager px-3 py-2 border">
+                {{userRole}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm p-2 mb-4">
+      <ul class="nav nav-pills nav-fill gap-2">
+        <li class="nav-item">
+          <button class="nav-link py-2 d-flex align-items-center justify-content-center gap-2" 
+            [class.active]="tabs === 'dept-overview'" (click)="tabs = 'dept-overview'">
+            <i class="bi bi-pie-chart-fill"></i> Dept Overview
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link py-2 d-flex align-items-center justify-content-center gap-2" 
+            [class.active]="tabs === 'notifications'" (click)="tabs = 'notifications'">
+            <i class="bi bi-bell-fill"></i> Notifications
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link py-2 d-flex align-items-center justify-content-center gap-2" 
+            [class.active]="tabs === 'edit-profile'" (click)="tabs = 'edit-profile'">
+            <i class="bi bi-person-gear-fill"></i> Edit Profile
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card border-0 shadow-sm p-4 min-height-container">
+      <div [ngSwitch]="tabs" class="animate-fade">
+        
+        <div *ngSwitchCase="'dept-overview'">
+          <app-department-overview></app-department-overview>
+        </div>
+        
+        <div *ngSwitchCase="'notifications'">
+          <app-manager-notifications></app-manager-notifications>
+        </div>
+
+        <div *ngSwitchCase="'edit-profile'">
+          <app-manager-edit-profile></app-manager-edit-profile>
+        </div>
+        
+        <div *ngSwitchDefault class="text-center py-5 text-muted">
+          <i class="bi bi-cursor me-2"></i> Select a tab to manage your department
+        </div>
+      </div>
+    </div>
+
+  </div> 
+</div>

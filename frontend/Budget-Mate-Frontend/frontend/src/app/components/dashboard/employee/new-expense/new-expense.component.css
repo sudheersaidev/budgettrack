@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:host {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    padding: 20px;
+}
+
+/* Icon Shapes */
+.icon-shape {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Custom Card Styling */
+.card {
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Enhanced Form Controls */
+.form-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.025em;
+}
+
+.form-control, .form-select, .input-group-text {
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.input-group-text {
+    border: 1px solid #e2e8f0;
+}
+
+/* Action Button */
+.btn-primary {
+    background-color: #2563eb;
+    border: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* Status Indicators */
+.status-dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.dot-approved { background-color: #10b981; }
+.dot-pending { background-color: #f59e0b; }
+.dot-rejected { background-color: #ef4444; }
+
+/* Table Fine-tuning */
+.table thead th {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #64748b;
+    border-top: none;
+}
+
+/* Progress bar styling */
+.progress {
+    background-color: #e2e8f0;
+    border-radius: 50px;
+}
+
+.progress-bar-animated {
+    animation-duration: 2s;
+}
+
+.extra-small {
+    font-size: 0.7rem;
+}
+
+/* Sidebar Analytics Card gradient */
+.bg-gradient-light {
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+}
+
+/* Modal UI Specific Styles */
+.modal-content {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.modal-header {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.text-uppercase {
+    letter-spacing: 0.5px;
+    font-size: 0.75rem;
+}
+
+.form-control, .input-group-text {
+    border-color: #e2e8f0;
+    padding: 0.75rem;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+.btn-primary {
+    border-radius: 8px;
+    padding: 10px 24px;
+}
+
+.btn-light {
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}

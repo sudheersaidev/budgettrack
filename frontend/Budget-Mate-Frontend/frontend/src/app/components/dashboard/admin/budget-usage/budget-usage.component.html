@@ -1,0 +1,68 @@
+<div class="utilization-container container-fluid py-4 px-4">
+  <div class="section-header mb-4">
+    <h2 class="section-title">Budget Utilization Overview</h2>
+    <p class="section-subtitle">Detailed breakdown of departmental spending</p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-md-6" *ngFor="let dept of departments">
+      <div class="dept-card-enhanced p-4 h-100">
+        
+        <div class="card-top d-flex justify-content-between align-items-center mb-4">
+          <h3 class="dept-name mb-0">{{ dept.name }}</h3>
+          <span class="remaining-pill">₹{{ dept.remaining | number }} remaining</span>
+        </div>
+
+        <div class="main-stats d-flex align-items-center mb-4 p-3">
+          <div class="stat-box flex-grow-1 text-center">
+            <span class="label d-block text-uppercase mb-1">Allocated</span>
+            <span class="value color-allocated">₹{{ dept.allocated | number }}</span>
+          </div>
+          
+          <div class="stat-divider"></div>
+          
+          <div class="stat-box flex-grow-1 text-center">
+            <span class="label d-block text-uppercase mb-1">Spent</span>
+            <span class="value color-spent">₹{{ dept.spent | number }}</span>
+          </div>
+        </div>
+
+        <div class="progress-section mt-auto">
+          <div class="progress-meta d-flex justify-content-between mb-2">
+            <span class="usage-text">Utilization Status</span>
+            <span class="percentage" [class.high-risk]="dept.utilization > 80">
+              {{ dept.utilization }}%
+            </span>
+          </div>
+          
+          <div class="bar-container w-100">
+            <div class="bar-fill"
+                 [style.width.%]="dept.utilization"
+                 [class.high-risk-bg]="dept.utilization > 80">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-btn-wrapper text-center mt-5">
+    <button class="generate-report-btn d-inline-flex align-items-center" 
+            (click)="generateReport()" 
+            [disabled]="isGenerating">
+      <ng-container *ngIf="!isGenerating">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Generate Report
+      </ng-container>
+
+      <ng-container *ngIf="isGenerating">
+        <div class="spinner me-2"></div>
+        Generating PDF...
+      </ng-container>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="main-container">
+  
+  <header class="white-section">
+    <nav class="top-nav">
+      <span class="brand-name">Budget Tracking</span>
+    </nav>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Experience a <br> Fresh Way to <br> <span class="blue-text">Manage Money</span></h1>
+        <p>Reach your goals with personalized insights, custom budgets, spend tracking.</p>
+        <button class="get-started-btn" (click)="onLogin()">Get Started</button>
+      </div>
+
+      <div class="hero-image">
+        <img src="/assets/landing.png" alt="Illustration">
+      </div>
+    </div>
+
+    <div class="drips">
+      <div class="drip small"></div>
+      <div class="drip tall"></div>
+      <div class="drip medium"></div>
+    </div>
+  </header>
+
+  <section class="dark-section">
+    <h2>Expense Is Loaded With <br> Free Features</h2>
+    
+    <div class="features-grid">
+      <div class="card" *ngFor="let f of features">
+        <div class="icon-square">{{ f.icon }}</div>
+        <div class="card-info">
+          <h3>{{ f.title }}</h3>
+          <p>{{ f.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

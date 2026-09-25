@@ -1,0 +1,23 @@
+.list-group-item {
+    transition: background-color 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+.list-group-item:hover {
+    background-color: #fbfcfe;
+    border-left: 4px solid #0d6efd;
+}
+
+.icon-circle {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.bg-info-subtle { background-color: #e0f7fa !important; color: #00838f !important; }
+.bg-primary-subtle { background-color: #e8eaf6 !important; color: #283593 !important; }
+
+.badge {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

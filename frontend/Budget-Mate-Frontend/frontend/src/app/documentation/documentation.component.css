@@ -1,0 +1,167 @@
+/* Container & Host */
+:host {
+    display: block;
+    background: #f4f7fa; /* Soft slate background */
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Hero Section with Glassmorphism */
+.hero-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    color: white;
+    padding: 80px 0;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(37, 99, 235, 0.2);
+    filter: blur(80px);
+    border-radius: 50%;
+}
+
+/* Documentation Cards */
+.doc-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    padding: 40px;
+    margin-bottom: 40px;
+    transition: transform 0.3s ease;
+}
+
+.doc-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    border-left: 5px solid #2563eb;
+    padding-left: 15px;
+    margin-bottom: 30px;
+    letter-spacing: -0.025em;
+}
+
+/* Flowchart Steps */
+.flow-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: #f8fafc;
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px dashed #cbd5e1;
+}
+
+.flow-step {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 15px 20px;
+    border-radius: 12px;
+    min-width: 160px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.flow-step:hover {
+    border-color: #2563eb;
+    background: #eff6ff;
+}
+
+.flow-step b {
+    color: #1e40af;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.flow-arrow {
+    color: #3b82f6;
+    font-weight: bold;
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+/* Database Table Designs */
+.db-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.db-table {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.db-head {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+.db-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+
+.db-row:hover {
+    background: #f1f5f9;
+}
+
+.pk { color: #d97706; font-weight: bold; font-family: monospace; }
+.fk { color: #2563eb; font-style: italic; font-family: monospace; }
+.type { color: #64748b; font-size: 0.75rem; font-weight: 500; }
+
+/* Technology Badges */
+.badge-stack {
+    background: #eff6ff;
+    color: #1d4ed8;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin: 8px;
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+}
+
+/* Utility Animations */
+@keyframes pulse {
+    0% { opacity: 0.5; transform: translateX(0); }
+    50% { opacity: 1; transform: translateX(5px); }
+    100% { opacity: 0.5; transform: translateX(0); }
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .doc-card { padding: 20px; }
+    .flow-container { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); margin: 10px 0; }
+}

@@ -1,0 +1,67 @@
+/* 1. Hide the native browser password reveal button (Edge/IE/Chrome) */
+.hide-browser-reveal::-ms-reveal,
+.hide-browser-reveal::-ms-clear {
+  display: none;
+}
+
+/* For some versions of Chrome/Webkit */
+.hide-browser-reveal::-webkit-contacts-auto-fill-button,
+.hide-browser-reveal::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+}
+
+/* 2. Container and Layout */
+.edit-profile-container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 3. Input Styling */
+.disabled-input {
+  background-color: #f8f9fa !important;
+  cursor: not-allowed;
+  color: #6c757d;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* 4. Password Group Styling to prevent double borders and focus issues */
+.password-toggle-group .form-control {
+  border-right: none;
+  border-radius: 8px 0 0 8px !important;
+}
+
+.password-toggle-group .input-group-text {
+  border-left: none;
+  border-radius: 0 8px 8px 0 !important;
+  color: #6c757d;
+  transition: all 0.2s ease;
+}
+
+.password-toggle-group .input-group-text:hover {
+  color: #0d6efd;
+}
+
+/* Ensure focus looks like one single box */
+.password-toggle-group:focus-within {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+  border-radius: 8px;
+}
+
+.password-toggle-group:focus-within .form-control,
+.password-toggle-group:focus-within .input-group-text {
+  border-color: #86b7fe;
+}

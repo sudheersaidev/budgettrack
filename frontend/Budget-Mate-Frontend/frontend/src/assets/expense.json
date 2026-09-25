@@ -1,0 +1,12 @@
+[
+  { "expenseId": "E3001", "budgetId": "B2001", "description": "Office Stationery", "amount": 12000, "submittedByUserId": "U1001", "submittedDate": "2025-01-10", "status": "Approved","department":"HR" },
+  { "expenseId": "E3002", "budgetId": "B2003", "description": "Server Purchase", "amount": 250000, "submittedByUserId": "U1003", "submittedDate": "2025-01-15", "status": "Approved","department":"IT" },
+  { "expenseId": "E3003", "budgetId": "B2004", "description": "Social Media Ads", "amount": 50000, "submittedByUserId": "U1006", "submittedDate": "2025-01-20", "status": "Pending","department":"Marketing" },
+  { "expenseId": "E3004", "budgetId": "B2002", "description": "Training Program", "amount": 40000, "submittedByUserId": "U1002", "submittedDate": "2025-01-25", "status": "Approved","department":"HR" },
+  { "expenseId": "E3005", "budgetId": "B2007", "description": "Firewall License", "amount": 90000, "submittedByUserId": "U1007", "submittedDate": "2025-02-05", "status": "Pending","department":"IT" },
+  { "expenseId": "E3006", "budgetId": "B2009", "description": "Brand Posters", "amount": 20000, "submittedByUserId": "U1006", "submittedDate": "2025-02-08", "status": "Rejected","department":"Marketing" },
+  { "expenseId": "E3007", "budgetId": "B2010", "description": "Cloud Subscription", "amount": 75000, "submittedByUserId": "U1003", "submittedDate": "2025-02-10", "status": "Approved","department":"IT" },
+  { "expenseId": "E3008", "budgetId": "B2006", "description": "Audit Consulting", "amount": 60000, "submittedByUserId": "U1009", "submittedDate": "2025-02-12", "status": "Pending","department":"Finance" },
+  { "expenseId": "E3009", "budgetId": "B2005", "description": "Office Maintenance", "amount": 18000, "submittedByUserId": "U1001", "submittedDate": "2025-02-14", "status": "Approved","department":"IT" },
+  { "expenseId": "E3010", "budgetId": "B2008", "description": "Recruitment Ads", "amount": 30000, "submittedByUserId": "U1002", "submittedDate": "2025-02-18", "status": "Approved","department":"Marketing" }
+]

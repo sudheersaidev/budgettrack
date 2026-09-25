@@ -1,0 +1,220 @@
+<div class="container-fluid p-0 bg-light min-vh-100">
+  <app-navbar-manager 
+    [userName]="userName" 
+    [userRole]="userRole" 
+    (onNewBudget)="openModal()" 
+    (onApprovalClick)="onClickApproval()">
+  </app-navbar-manager>
+
+  <div class="container mt-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-3 mb-4 border-bottom">
+      <div class="mb-3 mb-md-0">
+        <h1 class="h2 fw-bold text-dark mb-1">
+          <i class="bi bi-person-badge me-2 text-primary"></i>Manager Dashboard
+        </h1>
+        <p class="text-muted mb-0">
+          Overview for <span class="fw-semibold text-primary">{{ userDept }}</span> department
+        </p>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <div class="bg-white px-3 py-2 rounded-3 shadow-sm border">
+          <small class="text-muted d-block lh-1 small fw-bold text-uppercase">Current Period</small>
+          <span class="fw-bold text-dark">Jan 2026 - Dec 2026</span>
+        </div>
+        <div 
+          class="bg-primary text-white px-3 py-2 rounded-3 shadow-sm" 
+          (click)="showSessionInfo()" 
+          style="cursor: pointer; transition: transform 0.2s;"
+          onmouseover="this.style.transform='scale(1.05)'"
+          onmouseout="this.style.transform='scale(1)'"
+          role="button">
+          <i class="bi bi-calendar3 me-2"></i>
+          <span class="fw-bold">Today</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+  <div class="col-md-6">
+    <div class="card stat-card shadow-sm border-0 bg-primary text-white position-relative">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between">
+          <h6 class="text-uppercase fw-bold opacity-75 mb-3">Your Managed Budget</h6>
+          <span class="badge bg-white text-primary rounded-pill h-25">Created by You</span>
+        </div>
+        <h2 class="display-6 fw-bold mb-0">₹ {{ totalDeptBudget | number }}</h2>
+        <i class="bi bi-person-check card-icon-bg"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card stat-card shadow-sm border-0 bg-secondary text-white position-relative">
+      <div class="card-body p-4">
+        <h6 class="text-uppercase fw-bold opacity-75 mb-1">Closed Approvals</h6>
+        <h2 class="display-6 fw-bold mb-0">₹ {{ pendingApprovalsAmount | number }}</h2>
+        <i class="bi bi-lock-fill card-icon-bg"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="row mb-4">
+      <div class="d-flex justify-content-center mb-4">
+        <div class="bg-white p-1 rounded-pill shadow-sm border d-inline-flex">
+          <button 
+            class="btn rounded-pill px-4 fw-bold transition-all" 
+            [class.btn-primary]="activeTab === 'history'"
+            [class.btn-light]="activeTab !== 'history'" 
+            (click)="switchTab('history')">
+            <i class="bi bi-list-task me-2"></i>Recent History
+          </button>
+          <button 
+            class="btn rounded-pill px-4 fw-bold transition-all" 
+            [class.btn-primary]="activeTab === 'utilization'"
+            [class.btn-light]="activeTab !== 'utilization'" 
+            (click)="switchTab('utilization')">
+            <i class="bi bi-pie-chart-fill me-2"></i>Budget Utilization
+          </button>
+        </div>
+      </div>
+
+      <div class="row mb-4 align-items-center">
+        <div class="col-md-5 mx-auto">
+          <div class="input-group shadow-sm rounded-pill overflow-hidden">
+            <span class="input-group-text bg-white border-end-0 ps-3 text-muted">
+              <i class="bi bi-search"></i>
+            </span>
+            <input 
+              type="text" 
+              class="form-control border-start-0 py-2 shadow-none" 
+              placeholder="Search by Title or ID..."
+              [(ngModel)]="searchText" 
+              (input)="onSearch()" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content pb-5">
+      <section *ngIf="activeTab === 'history'" class="animate-fade-in">
+        <div class="card border-0 shadow-sm overflow-hidden" style="border-radius: 16px;">
+          <div class="card-header bg-white py-3 border-0">
+            <h5 class="fw-bold mb-0 text-dark">Transaction Log</h5>
+          </div>
+          <app-recent-history [budgets]="filteredBudgets" (statusChanged)="handleStatusUpdate($event)"></app-recent-history>
+        </div>
+      </section>
+
+      <section *ngIf="activeTab === 'utilization'" class="animate-fade-in">
+        <app-budget-utilization 
+          [budgets]="filteredBudgets" 
+          [userDept]="userDept" 
+          [userName]="userName">
+        </app-budget-utilization>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="modal d-block modal-glass" tabindex="-1" *ngIf="showModal" style="background: rgba(0,0,0,0.6); z-index: 1050;">
+  <div class="modal-dialog modal-dialog-centered modal-lg"> <div class="modal-content shadow-lg border-0" style="border-radius: 20px;">
+      <div class="modal-header border-0 pb-0 pt-4 px-4">
+        <h5 class="modal-title fw-bold text-primary">
+          <i class="bi bi-plus-circle-fill me-2"></i>New Budget Entry
+        </h5>
+        <button type="button" class="btn-close shadow-none" (click)="closeModal()"></button>
+      </div>
+      
+      <div class="modal-body p-4">
+        <form class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-muted small">Budget ID</label>
+            <input type="text" class="form-control rounded-3" [(ngModel)]="newBudget.budgetId" name="budgetId" placeholder="e.g. BUD001" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-muted small">Title</label>
+            <input type="text" class="form-control rounded-3" [(ngModel)]="newBudget.title" name="title" placeholder="Project Name" />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-muted small">Department</label>
+            <input type="text" class="form-control rounded-3 bg-light border-0" [value]="userDept" readonly />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-muted small">Created By</label>
+            <input type="text" class="form-control rounded-3 bg-light border-0" [value]="userName" readonly />
+          </div>
+
+          <div class="col-12 mt-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <label class="form-label fw-semibold text-dark small mb-0">Assign Employees ({{selectedEmployees.length}} selected)</label>
+                <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none" (click)="selectAllFiltered()">Select All Filtered</button>
+            </div>
+            
+            <div class="input-group input-group-sm mb-2 shadow-sm">
+              <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control border-start-0 ps-0 shadow-none" placeholder="Find employee by name or ID..." [(ngModel)]="employeeSearchText" name="empSearch">
+            </div>
+
+            <div class="border rounded-3 bg-white overflow-hidden shadow-sm">
+              <div style="max-height: 180px; overflow-y: auto;" class="p-2">
+                <div *ngFor="let emp of filteredEmployees" 
+                     class="d-flex align-items-center justify-content-between p-2 mb-1 rounded hover-bg"
+                     [class.bg-primary-subtle]="isEmployeeSelected(emp.userID)"
+                     (click)="toggleEmployeeSelection(emp)"
+                     style="cursor: pointer; transition: 0.2s;">
+                  
+                  <div class="d-flex align-items-center">
+                    <div class="form-check m-0">
+                      <input class="form-check-input" type="checkbox" [checked]="isEmployeeSelected(emp.userID)" style="pointer-events: none;">
+                    </div>
+                    <div class="ms-2">
+                      <div class="fw-bold small mb-0 text-dark">{{ emp.name }}</div>
+                      <div class="text-muted" style="font-size: 0.7rem;">ID: {{ emp.userID }}</div>
+                    </div>
+                  </div>
+                  
+                  <span *ngIf="isEmployeeSelected(emp.userID)" class="text-primary"><i class="bi bi-check-circle-fill"></i></span>
+                </div>
+
+                <div *ngIf="filteredEmployees.length === 0" class="text-center py-4 text-muted">
+                    <i class="bi bi-people fs-2 d-block"></i>
+                    <span class="small">No employees found in this department.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-2 d-flex flex-wrap gap-1" style="max-height: 80px; overflow-y: auto;">
+              <span *ngFor="let sel of selectedEmployees" 
+                    class="badge bg-primary text-white rounded-pill d-flex align-items-center px-2 py-1">
+                {{ sel.name }}
+                <i class="bi bi-x-circle ms-2" style="cursor: pointer;" (click)="removeEmployee(sel.userID)"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="col-12 mt-3">
+            <label class="form-label fw-semibold text-muted small">Amount Allocated (INR)</label>
+            <input type="number" class="form-control rounded-3 border-primary shadow-sm" [(ngModel)]="newBudget.amountAllocated" name="amountAllocated" placeholder="0.00" />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-muted small">Start Date</label>
+            <input type="date" class="form-control rounded-3" [(ngModel)]="newBudget.startDate" name="startDate" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-muted small">End Date</label>
+            <input type="date" class="form-control rounded-3" [(ngModel)]="newBudget.endDate" name="endDate" />
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer border-0 p-4 pt-0">
+        <button type="button" class="btn btn-light fw-bold px-4 rounded-pill" (click)="closeModal()">Cancel</button>
+        <button type="button" class="btn btn-primary fw-bold px-5 rounded-pill shadow" (click)="addBudget()">Save Entry</button>
+      </div>
+    </div>
+  </div>
+</div>

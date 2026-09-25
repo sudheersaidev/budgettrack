@@ -1,0 +1,245 @@
+<div class="card shadow-sm border-0 mb-4 overflow-hidden">
+  <div class="card-body p-4">
+    <div class="d-flex align-items-center mb-4">
+      <div class="icon-shape bg-primary-subtle text-primary rounded-3 me-3">
+        <i class="bi bi-plus-square-dotted fs-4"></i>
+      </div>
+      <h6 class="fw-bold mb-0 text-dark">Log New Expense</h6>
+    </div>
+    
+    <div class="row g-3 align-items-end">
+      <div class="col-md-2">
+        <label class="form-label small fw-bold text-muted mb-2">Budget ID</label>
+        <select class="form-select border-2" 
+                [(ngModel)]="selectedBudgetId" 
+                (change)="onBudgetChangeLocal()"
+                [class.is-invalid]="budgetIds.length === 0">
+          <option value="" disabled>Select ID</option>
+          <option *ngFor="let id of budgetIds" [value]="id">{{ id }}</option>
+        </select>
+        <div *ngIf="budgetIds.length === 0" class="text-danger extra-small mt-1">No budgets assigned</div>
+      </div>
+
+      <div class="col-md-2">
+        <label class="form-label small fw-bold text-muted mb-2">Department</label>
+        <div class="input-group">
+          <span class="input-group-text bg-light border-0"><i class="bi bi-building"></i></span>
+          <input class="form-control bg-light border-0 fw-medium" [ngModel]="userDepartment" readonly>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <label class="form-label small fw-bold text-muted mb-2">Approving Manager</label>
+        <div class="input-group">
+          <span class="input-group-text bg-light border-0"><i class="bi bi-person-badge"></i></span>
+          <input class="form-control bg-light border-0 text-primary fw-bold" 
+                 [ngModel]="selectedManagerName" 
+                 placeholder="Select Budget..." 
+                 readonly>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <label class="form-label small fw-bold text-muted mb-2">Category</label>
+        <select class="form-select border-2" [(ngModel)]="selectedCategory">
+          <option value="" disabled>Select Category</option>
+          <option *ngFor="let cat of categories" [value]="cat.name">{{ cat.name }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-2">
+        <label class="form-label small fw-bold text-muted mb-2">Description</label>
+        <input class="form-control border-2" 
+               [(ngModel)]="description" 
+               placeholder="e.g. Server Maintenance">
+      </div>
+
+      <div class="col-md-2">
+        <label class="form-label small fw-bold text-muted mb-2">Amount</label>
+        <div class="input-group border-2 rounded-3 overflow-hidden">
+          <span class="input-group-text bg-white border-0 text-muted">₹</span>
+          <input type="number" 
+                 min="0"
+                 class="form-control border-0 text-end fw-bold fs-5" 
+                 [(ngModel)]="amount" 
+                 placeholder="0">
+        </div>
+      </div>
+
+      <div class="col-12 mt-4">
+        <button class="btn btn-primary btn-lg w-100 fw-bold shadow-sm d-flex align-items-center justify-content-center py-3" 
+                (click)="onSubmitExpense()">
+          <i class="bi bi-send-fill me-2"></i>SUBMIT EXPENSE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="card shadow-sm border-0 h-100 overflow-hidden">
+      <div class="card-header bg-white py-4 px-4 border-0 d-flex justify-content-between align-items-center">
+        <h6 class="mb-0 fw-bold">
+          <i class="bi bi-clock-history me-2 text-primary"></i>Recent Expense History 
+        </h6>
+        <span class="badge bg-primary-subtle text-primary rounded-pill">Last 5 Activities</span>
+      </div>
+      
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="bg-light">
+            <tr>
+              <th class="ps-4">Budget</th>
+              <th>Details</th>
+              <th>Category</th>
+              <th class="text-end">Amount</th>
+              <th class="text-center pe-4">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of filteredExpenses" class="border-bottom">
+              <td class="ps-4 fw-bold text-primary">{{ e.budgetId }}</td>
+              <td>
+                <div class="text-dark fw-medium text-truncate" style="max-width: 220px;">{{ e.description }}</div>
+                <div class="text-muted extra-small">ID: {{ e.expenseId }}</div>
+              </td>
+              <td><span class="badge bg-secondary-subtle text-secondary border-0">{{ e.category }}</span></td>
+              <td class="text-end fw-bold">₹{{ e.amount | number }}</td>
+              <td class="text-center pe-4">
+              <div 
+                [ngClass]="{'pointer-event': e.status === 'Rejected'}" 
+                [style.cursor]="e.status === 'Rejected' ? 'pointer' : 'default'"
+                (click)="e.status === 'Rejected' ? showRejectedReason(e) : null"
+                title="Click to see reason"
+              >
+                <span class="status-dot" [ngClass]="'dot-' + e.status.toLowerCase()"></span>
+                <span class="fw-bold extra-small text-uppercase" [ngClass]="{
+                    'text-success': e.status === 'Approved',
+                    'text-warning': e.status === 'Pending',
+                    'text-danger': e.status === 'Rejected'
+                  }">
+                  {{ e.status }}
+                  <i *ngIf="e.status === 'Rejected'" class="bi bi-info-circle ms-1"></i>
+                </span>
+              </div>
+            </td>
+            </tr>
+            <tr *ngIf="filteredExpenses.length === 0">
+                <td colspan="5" class="text-center py-5 text-muted">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7486/7486744.png" width="60" class="opacity-25 mb-3" alt="Empty">
+                    <p>No recent expenses to show.</p>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card shadow-sm border-0 h-100 bg-gradient-light">
+      <div class="card-header bg-transparent py-4 px-4 border-0">
+        <h6 class="mb-0 fw-bold"><i class="bi bi-pie-chart-fill me-2 text-primary"></i>Budget Insights</h6>
+      </div>
+
+      <div class="card-body px-4" *ngIf="selectedBudgetId">
+        <div class="text-center mb-4">
+            <h3 class="fw-bold mb-0" [ngClass]="utilizationPercent > 80 ? 'text-danger' : 'text-primary'">
+                {{ utilizationPercent | number:'1.0-1' }}%
+            </h3>
+            <small class="text-muted fw-bold">Total Utilization</small>
+        </div>
+
+        <div class="progress mb-4" style="height: 12px;">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" 
+               [style.width.%]="utilizationPercent"
+               [ngClass]="utilizationPercent > 80 ? 'bg-danger' : 'bg-primary'">
+          </div>
+        </div>
+
+        <div class="list-group list-group-flush mb-4 rounded-3 border">
+            <div class="list-group-item d-flex justify-content-between py-3">
+                <span class="text-muted small">Allocated</span>
+                <span class="fw-bold">₹{{ totalAllocated | number }}</span>
+            </div>
+            <div class="list-group-item d-flex justify-content-between py-3">
+                <span class="text-muted small">Consumed</span>
+                <span class="fw-bold text-danger">₹{{ utilizedAmount | number }}</span>
+            </div>
+            <div class="list-group-item d-flex justify-content-between py-3 bg-success-subtle">
+                <span class="text-success fw-bold small">Available</span>
+                <span class="fw-bold text-success">₹{{ remainingBalance | number }}</span>
+            </div>
+        </div>
+
+        <button class="btn btn-outline-primary w-100 fw-bold border-2 py-2" (click)="openTopUpModal()">
+          <i class="bi bi-arrow-up-circle-fill me-2"></i>Request Budget Top-Up
+        </button>
+      </div>
+
+      <div class="card-body text-center py-5" *ngIf="!selectedBudgetId">
+        <div class="py-5">
+            <i class="bi bi-hand-index-thumb fs-1 text-primary opacity-25"></i>
+            <p class="text-muted small mt-3 px-4 fw-medium">Select a Budget ID to view real-time spending analytics and limits.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="topUpModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
+      <div class="modal-header bg-primary text-white py-3">
+        <h5 class="modal-title fw-bold">Budget Top-Up Request</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-4">
+        <div class="row g-4 mb-4">
+          <div class="col-6">
+            <label class="form-label small fw-bold text-muted text-uppercase mb-1">Requested By</label>
+            <div class="fw-semibold text-dark">{{userName}}</div>
+          </div>
+          <div class="col-6">
+            <label class="form-label small fw-bold text-muted text-uppercase mb-1">Target Budget</label>
+            <div class="fw-bold text-primary">{{selectedBudgetId}}</div>
+          </div>
+          <div class="col-6">
+            <label class="form-label small fw-bold text-muted text-uppercase mb-1">Department</label>
+            <div class="fw-semibold text-dark">{{userDepartment}}</div>
+          </div>
+          <div class="col-6">
+            <label class="form-label small fw-bold text-muted text-uppercase mb-1">Role</label>
+            <div class="fw-semibold text-dark">{{userRole}}</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label small fw-bold text-muted text-uppercase">Top-Up Amount</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0">₹</span>
+            <input type="number" class="form-control border-start-0 ps-0" 
+                   [(ngModel)]="topUpAmount" placeholder="Enter needed amount">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label small fw-bold text-muted text-uppercase">Reason for Request</label>
+          <textarea class="form-control" rows="3" 
+                    [(ngModel)]="topUpReason" placeholder="Explain the business need..."></textarea>
+        </div>
+        
+        <div class="alert alert-info border-0 small py-2">
+          <i class="bi bi-info-circle-fill me-2"></i> Sent to manager: <strong>{{selectedManagerName}}</strong>
+        </div>
+      </div>
+
+      <div class="modal-footer border-0 p-4 pt-0 d-flex justify-content-center gap-3">
+        <button type="button" class="btn btn-light px-5 fw-bold text-muted" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary px-5 fw-bold" (click)="submitTopUp()">Send for Approval</button>
+      </div>
+    </div>
+  </div>
+</div>

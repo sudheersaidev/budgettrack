@@ -1,0 +1,106 @@
+<div class="page-container">
+  <main class="main-content container-fluid p-0">
+    <div class="row g-0 h-100">
+      
+      <div class="col-md-6 d-none d-md-flex left-display-section">
+        <div class="content-wrapper">
+          <div class="text-top-area mb-4">
+            <h1 class="display-4 fw-bold typewriter-text">{{ typewriterText }}</h1>
+            <p class="lead text-muted mt-2 fade-in-text">The smarter way to track your expenses.</p>
+          </div>
+          <div class="image-blend-wrapper">
+            <img src="/assets/Registerimage.jpg" alt="Illustration" class="blended-image">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 form-section d-flex align-items-center justify-content-center p-4">
+        <div class="login-glass-card mt-5">
+          <div class="text-center mb-4">
+            <h2 class="fw-bold m-0 text-slate">Create Account</h2>
+            <p class="subtitle mt-1">Join thousands managing budgets today</p>
+          </div>
+
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row g-3 mb-3">
+              <div class="col-6">
+                <label>Full Name</label>
+                <input type="text" formControlName="name" placeholder="John Doe" 
+                       [class.invalid-field]="submitted && registerForm.get('name')?.invalid">
+              </div>
+              <div class="col-6">
+                <label>User ID</label>
+                <input type="text" formControlName="userId" placeholder="U101"
+                       [class.invalid-field]="submitted && registerForm.get('userId')?.invalid">
+              </div>
+            </div>
+
+            <div class="field-wrapper mb-3">
+              <label>Work Email</label>
+              <input type="email" formControlName="email" placeholder="lokesh@company.com"
+                     [class.invalid-field]="submitted && registerForm.get('email')?.invalid">
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-6">
+                <label>Password</label>
+                <div class="password-wrapper">
+                  <input [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                         [class.invalid-field]="submitted && registerForm.get('password')?.invalid">
+                  <button type="button" class="toggle-btn" (click)="showPassword = !showPassword">
+                    <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-6">
+                <label>Confirm</label>
+                <div class="password-wrapper">
+                  <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword"
+                         [class.invalid-field]="submitted && (registerForm.get('confirmPassword')?.invalid || registerForm.hasError('mismatch'))">
+                  <button type="button" class="toggle-btn" (click)="showConfirmPassword = !showConfirmPassword">
+                    <i [class]="showConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-12" *ngIf="submitted && registerForm.get('password')?.errors">
+                <small class="error-msg">⚠️ 8+ chars, Uppercase, Lowercase, Number & Special Char required.</small>
+              </div>
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-6">
+                <label>Role</label>
+                <select formControlName="role" [class.invalid-field]="submitted && registerForm.get('role')?.invalid">
+                  <option value="" disabled>Select</option>
+                  <option value="Admin">Admin</option>
+                  <option value="Manager">Manager</option>
+                  <option value="Employee">Employee</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label [style.opacity]="registerForm.get('department')?.disabled ? '0.5' : '1'">Dept</label>
+                <select formControlName="department" [class.invalid-field]="submitted && registerForm.get('department')?.invalid">
+                  <option value="" disabled>Select</option>
+                  <option value="All" *ngIf="registerForm.get('role')?.value === 'Admin'">All</option>
+                  <option value="Finance">Finance</option>
+                  <option value="IT">IT</option>
+                  <option value="HR">HR</option>
+                  <option value="Marketing">Marketing</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="register-btn">Create Account</button>
+          </form>
+          
+          <div class="text-center mt-4">
+            <p class="small text-muted">Already have an account? 
+              <a routerLink="/login" class="text-indigo fw-bold">Log in</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>

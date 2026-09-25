@@ -1,0 +1,172 @@
+<header class="hero-section text-center">
+  <div class="container">
+    <h1 class="display-4 fw-bold">BudgetTrack Enterprise</h1>
+    <p class="lead opacity-75">Full System Architecture & Financial Logic Documentation</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="doc-card">
+    <h2 class="section-title">👥 Role Definitions</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="p-4 border rounded-4 bg-light h-100">
+          <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" width="60" class="mb-3" alt="Employee">
+          <h4 class="fw-bold">Employee</h4>
+          <p class="small text-muted">Logs expenses, submits top-up requests, and monitors category-wise utilization.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 border rounded-4 bg-light h-100">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="60" class="mb-3" alt="Manager">
+          <h4 class="fw-bold">Manager</h4>
+          <p class="small text-muted">Initializes budgets, manages team allocations, and reviews approval queues.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 border rounded-4 bg-light h-100">
+          <img src="https://cdn-icons-png.flaticon.com/512/2206/2206368.png" width="60" class="mb-3" alt="Admin">
+          <h4 class="fw-bold">Admin</h4>
+          <p class="small text-muted">Configures system categories, manages user access, and performs audit checks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-card">
+    <h2 class="section-title">⚙️ Module Logic & Sequence</h2>
+
+    <div class="mb-5">
+      <h5 class="fw-bold text-primary mb-3">Module 1: Authentication & Authorization </h5>
+      <div class="flow-container">
+        <div class="flow-step"><b>Login</b><br><small>Email/Pass</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>Identity</b><br><small>Bcrypt Validation</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>Claims</b><br><small>JWT w/ Roles</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>Security</b><br><small>LoginLog Created</small></div>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <h5 class="fw-bold text-primary mb-3">Module 2: Budgeting & Expense Lifecycle</h5>
+      
+      <div class="flow-container">
+        <div class="flow-step"><b>Allocation</b><br><small>Manager Setup</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>Expense</b><br><small>Employee Input</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>Validation</b><br><small>Balance Check</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>Status</b><br><small>Set to Pending</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>Approval</b><br><small>Manager Review</small></div>
+      </div>
+    </div>
+
+    <div class="mb-0">
+      <h5 class="fw-bold text-primary mb-3">Module 3: Financial Analysis & Reporting</h5>
+      <div class="flow-container">
+        <div class="flow-step"><b>Financial Cards</b><br><small>Total Budget, Rates</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>Budget utilization</b><br><small>Shows all Dept Utilization Rate</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>Live Server</b><br><small>Shows the Recent Login History</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>Visualize</b><br><small>Diagramatical Representation</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-card">
+    <h2 class="section-title">📊 Database Design (ER Diagram)</h2>
+    
+    <div class="db-grid">
+      <div class="db-table">
+        <div class="db-head">User</div>
+        <div class="db-row"><span class="pk">UserID</span><span class="type">string (PK)</span></div>
+        <div class="db-row"><span>Name</span><span class="type">string</span></div>
+        <div class="db-row"><span>Email</span><span class="type">string</span></div>
+        <div class="db-row"><span>PassHash</span><span class="type">string</span></div>
+        <div class="db-row"><span>Role</span><span class="type">Enum</span></div>
+        <div class="db-row"><span>Dept</span><span class="type">Enum</span></div>
+        <div class="db-row"><span>Status</span><span class="type">string</span></div>
+      </div>
+
+      <div class="db-table">
+        <div class="db-head">Budget</div>
+        <div class="db-row"><span class="pk">BudgetId</span><span class="type">string (PK)</span></div>
+        <div class="db-row"><span>Title</span><span class="type">string</span></div>
+        <div class="db-row"><span>AmtAllocated</span><span class="type">decimal</span></div>
+        <div class="db-row"><span>StartDate</span><span class="type">DateTime</span></div>
+        <div class="db-row"><span>EndDate</span><span class="type">DateTime</span></div>
+        <div class="db-row"><span>CreatedBy</span><span class="type">string</span></div>
+        <div class="db-row"><span>Status</span><span class="type">string</span></div>
+      </div>
+
+      <div class="db-table">
+        <div class="db-head">Expense</div>
+        <div class="db-row"><span class="pk">ExpenseId</span><span class="type">string (PK)</span></div>
+        <div class="db-row"><span class="fk">BudgetId</span><span class="type">string (FK)</span></div>
+        <div class="db-row"><span>Category</span><span class="type">string</span></div>
+        <div class="db-row"><span>Amount</span><span class="type">decimal</span></div>
+        <div class="db-row"><span>Status</span><span class="type">string</span></div>
+        <div class="db-row"><span>RejReason</span><span class="type">string?</span></div>
+        <div class="db-row"><span>Submitted</span><span class="type">DateTime</span></div>
+      </div>
+
+      <div class="db-table">
+        <div class="db-head">TopUpRequest</div>
+        <div class="db-row"><span class="pk">RequestId</span><span class="type">string (PK)</span></div>
+        <div class="db-row"><span class="fk">BudgetId</span><span class="type">string (FK)</span></div>
+        <div class="db-row"><span>UserName</span><span class="type">string</span></div>
+        <div class="db-row"><span>Amount</span><span class="type">decimal</span></div>
+        <div class="db-row"><span>Reason</span><span class="type">string</span></div>
+        <div class="db-row"><span>Status</span><span class="type">string</span></div>
+      </div>
+
+      <div class="db-table">
+        <div class="db-head">BudgetAssignment</div>
+        <div class="db-row"><span class="pk">Id</span><span class="type">int (PK)</span></div>
+        <div class="db-row"><span class="fk">BudgetId</span><span class="type">string</span></div>
+        <div class="db-row"><span class="fk">EmployeeId</span><span class="type">string</span></div>
+        <div class="db-row"><span>EmpName</span><span class="type">string</span></div>
+      </div>
+
+      <div class="db-table">
+        <div class="db-head">Category</div>
+        <div class="db-row"><span class="pk">Id</span><span class="type">int (PK)</span></div>
+        <div class="db-row"><span>Name</span><span class="type">string</span></div>
+        <div class="db-row"><span>Enabled</span><span class="type">bool</span></div>
+      </div>
+
+      <div class="db-table">
+        <div class="db-head">LoginLog</div>
+        <div class="db-row"><span class="pk">LogID</span><span class="type">int (PK)</span></div>
+        <div class="db-row"><span class="fk">UserID</span><span class="type">string</span></div>
+        <div class="db-row"><span>LoginTime</span><span class="type">DateTime</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-card text-center border-0 bg-transparent shadow-none">
+    <h2 class="section-title border-0 text-center">🚀 System Infrastructure</h2>
+    <div class="d-flex flex-wrap justify-content-center mt-3">
+      <span class="badge-stack">Angular 18</span>
+      <span class="badge-stack">ASP.NET Core 8.0</span>
+      <span class="badge-stack">EF Core 8</span>
+      <span class="badge-stack">SQL Server 2022</span>
+      <span class="badge-stack">JWT Authentication</span>
+    </div>
+    <p class="text-muted small mt-4">N-Layer Architecture with RESTful Communication & Secure RBAC Claims.</p>
+  </div>
+</div>
+
+<footer class="py-5 text-center text-muted">
+  <div class="container">
+    <hr class="mb-4">
+    <p class="mb-1">&copy; 2026 BudgetTrack System | Internal Specification Document</p>
+    <small>Confidential Technical Asset</small>
+  </div>
+</footer>

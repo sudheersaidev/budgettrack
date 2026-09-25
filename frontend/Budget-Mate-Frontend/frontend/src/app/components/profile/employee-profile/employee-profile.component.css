@@ -1,0 +1,153 @@
+/* --- Background and Container --- */
+.min-vh-100.bg-light {
+  background-color: #f8f9fa !important;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- Navigation Link (Back to Dashboard) --- */
+span[routerLink] {
+  display: inline-block;
+  margin: 1rem 0 0 2rem;
+  color: #6c757d;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+span[routerLink]:hover {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+/* --- Profile Card Styling --- */
+.card {
+  border-radius: 15px;
+  background: #ffffff;
+}
+
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+/* Rounded Avatar Styling */
+.rounded-circle.bg-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #0043a8 100%) !important;
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+  border: 3px solid #fff;
+}
+
+/* Badge Styling */
+.badge.bg-info {
+  background-color: #e1f5fe !important;
+  color: #0288d1 !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+/* --- Navigation Pills (Tabs) --- */
+.nav-pills {
+  background: #fff;
+  padding: 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.nav-link {
+  color: #495057;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 10px !important;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.nav-link:hover {
+  background-color: #f1f3f5;
+  color: #0d6efd;
+}
+
+.nav-link.active {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+}
+
+/* Icon spacing in tabs */
+.nav-link i {
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+/* --- Content Area (tabSwitch) --- */
+.tabSwitch {
+  background: #fff;
+  border-radius: 15px;
+  padding: 2rem;
+  min-height: 300px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Horizontal Rule for scannability */
+.tabSwitch h4, .tabSwitch h5 {
+  color: #212529;
+  border-bottom: 2px solid #f8f9fa;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+.animate-fade {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tab Styling */
+.nav-pills .nav-link {
+  color: #6c757d;
+  font-weight: 500;
+  border-radius: 8px !important;
+  transition: 0.2s ease;
+}
+
+.nav-pills .nav-link:hover {
+  background-color: #f1f3f5;
+  color: #0d6efd;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+}
+
+/* Profile Badge Soft Colors */
+.bg-info-subtle {
+  background-color: #e1f5fe !important;
+}
+.text-info {
+  color: #0288d1 !important;
+}
+
+/* Link Hover */
+a:hover {
+  color: #0d6efd !important;
+}

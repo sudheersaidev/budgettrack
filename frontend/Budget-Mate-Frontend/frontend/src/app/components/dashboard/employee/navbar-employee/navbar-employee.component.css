@@ -1,0 +1,66 @@
+/* Dark Background from Image */
+.custom-dark-bg {
+    background-color: #1a1d21; /* Dark charcoal/black color from your image */
+    border-bottom: 1px solid #2d3238;
+}
+
+.custom-navbar .container {
+    max-width: 1300px;
+}
+
+.brand-icon {
+    width: 35px;
+    height: 35px;
+}
+
+/* Profile Pill Container */
+.profile-pill {
+    background-color: #25282c; /* Slightly lighter than background */
+    border: 1px solid #363b41;
+    border-radius: 50px;
+    padding: 4px 12px 4px 4px; /* Space for the avatar and chevron */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.profile-pill:hover {
+    background-color: #2d3238;
+    border-color: #4a5057;
+}
+
+/* Avatar inside the pill */
+.avatar-circle {
+    width: 34px;
+    height: 34px;
+    background: linear-gradient(135deg, #4461f2, #2d46c1); /* Blue gradient from image */
+    color: white;
+    border-radius: 50%;
+    font-size: 0.9rem;
+}
+
+.user-name {
+    font-size: 0.85rem;
+}
+
+.user-role {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Logout Button */
+.logout-btn {
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+}
+
+.logout-btn:hover {
+    color: #ff4d4d !important;
+}
+
+/* Ensure navbar isn't too tall */
+.navbar {
+    min-height: 70px;
+}

@@ -1,0 +1,20 @@
+.container {
+  max-width: 800px;
+}
+
+.list-group-item {
+  transition: background-color 0.2s;
+  border-left: 4px solid #dee2e6;
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+}
+
+.badge {
+  padding: 0.6em 0.8em;
+}
+
+/* Color left border based on notification type */
+.list-group-item:has(.bg-primary) { border-left-color: #0d6efd; }
+.list-group-item:has(.bg-success) { border-left-color: #198754; }

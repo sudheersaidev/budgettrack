@@ -1,0 +1,88 @@
+/* Custom Navbar Styling */
+.navbar {
+  backdrop-filter: blur(10px);
+  background-color: #1a1a2e !important; /* Overriding with your deep navy */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 64px;
+}
+
+/* Brand/Logo Hover Effect */
+.navbar-brand:hover .bg-primary {
+  transform: rotate(-5deg) scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Profile Capsule Styles */
+.profile-capsule-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-capsule-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Character Avatar Circle */
+.avatar-circle {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #4e73df, #224abe);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Logout Button Polish */
+.btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.2);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(231, 76, 60, 0.15) !important; /* Subtle Red */
+  border-color: #e74c3c !important;
+  color: #ff7675 !important;
+}
+
+.btn-outline-light:hover svg {
+  transform: translateX(3px);
+  transition: transform 0.2s ease;
+}
+
+/* Typography Tweaks */
+.user-name {
+  font-size: 0.875rem;
+  letter-spacing: 0.2px;
+}
+
+.user-role {
+  font-size: 0.7rem;
+  color: #a0a0b0;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.sticky-top {
+    top: 0;
+    z-index: 1020; /* High z-index to stay above page content */
+    background-color: #212529 !important; /* Ensures the dark background is solid while scrolling */
+}
+
+/* Optional: Smooth hover for the profile capsule */
+.hover-bg:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    transition: background-color 0.2s ease;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+/* Mobile Adjustments */
+@media (max-width: 576px) {
+  .navbar {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}

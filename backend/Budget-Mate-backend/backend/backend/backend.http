@@ -1,0 +1,23 @@
+@backend_HostAddress = http://localhost:5286
+
+GET {{backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+
+
+###@backend_HostAddress = http://localhost:5286
+ 
+### Login Request
+###POST {{backend_HostAddress}}/api/auth/login
+###Content-Type: application/json
+###Accept: application/json
+ 
+###{
+  ###"email": "admin@cts.in",
+  ###"password": "Admin@123"
+###}
+ 
+
+
