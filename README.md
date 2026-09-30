@@ -122,7 +122,9 @@ ng serve
  🔒 Security & System Constraints
 
 💠Self-Contained Architecture: Operates entirely within the enterprise boundary with no external API or third-party service dependencies.
+
 💠Role-Based Authorization: Secure API endpoints guarded by role requirements.
+
 💠Auditability: Automatic tracking of creation dates, approval logs, and user activity history.
 
 
