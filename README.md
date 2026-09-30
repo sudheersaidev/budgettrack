@@ -31,9 +31,9 @@ An end-to-end, full-stack enterprise web application designed to streamline inte
 💠Ownership Transfer: Admins can seamlessly reassign budget ownership across managers.
 
  📈 3. Financial Analytics & Visual Reporting
-* Real-time metrics for Total Budget, Total Approved Expenses, Utilization Rate (%), and Approval Rate (%).
-* Visual department-level expense distribution charts (Donut / Pie Breakdown).
-* Detailed remaining budget indicators per department.
+✔️ Real-time metrics for Total Budget, Total Approved Expenses, Utilization Rate (%), and Approval Rate (%).
+✔️ Visual department-level expense distribution charts (Donut / Pie Breakdown).
+✔️ Detailed remaining budget indicators per department.
 
 🔔 4. Self-Contained In-App Alerts
  Instant in-app notifications for pending approvals, category updates, and budget threshold alerts without third-party email/SMS dependencies.
